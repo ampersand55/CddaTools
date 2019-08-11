@@ -1,12 +1,12 @@
 /***
 
 https://github.com/ampersand55/cddaJsonLint/
-
+Dependencies: https://www.npmjs.com/package/node-fetch
 Usage: node.exe cddalint.js file.json
 
 ***/
 const fs = require('fs');
-const fetch = require('node-fetch'); // https://www.npmjs.com/package/node-fetch
+const fetch = require('node-fetch');
 
 if (process.argv.length !== 3) {
   console.log('usage: node', process.argv[1], 'file.json');
