@@ -1,8 +1,8 @@
 /***
-        Github: https://github.com/ampersand55/cddaJsonLint/
-  Dependencies: https://www.npmjs.com/package/node-fetch
-         Usage: node cddalint.js file.json
-***/
+Github: https://github.com/ampersand55/cddaJsonLint/
+Dependencies: https://www.npmjs.com/package/node-fetch
+Usage: node cddalint.js file.json
+ ***/
 const fs = require('fs');
 const fetch = require('node-fetch');
 
@@ -23,14 +23,18 @@ if (!fs.existsSync(jsonFile)) {
   process.exit();
 }
 
+let originalBody = '';
+
 fs.readFile(jsonFile, 'utf8', fetchLinter);
 
 function fetchLinter(error, body) {
   if (error) {
     throw error;
   }
-  
+
   JSON.parse(body); // to test if json file is properly formatted;
+  
+  originalBody = body;
 
   fetch('http://dev.narc.ro/tools/format/json_formatter.cgi', {
     method: 'post',
@@ -44,6 +48,14 @@ function fetchLinter(error, body) {
 }
 
 function saveFile(formattedJSON) {
+
+  formattedJSON = formattedJSON.replace(/\n/g, '\r\n');
+  
+  if (formattedJSON === originalBody) {
+    console.log(jsonFile, 'is already properly linted');
+    return;
+  }
+
   fs.writeFile(jsonFile, formattedJSON, error => {
     if (error) {
       throw error;
