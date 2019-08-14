@@ -54,7 +54,7 @@ function saveFile(formattedJSON) {
     return;
   }
 
-  formattedJSON = formattedJSON.replace(/\n/g, '\r\n');
+  formattedJSON = formattedJSON.replace(/(?:(?!\r).)\n/g, '\r\n');
 
   if (formattedJSON === originalBody) {
     console.log(jsonFile, 'is already properly linted');
