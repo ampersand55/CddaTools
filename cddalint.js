@@ -1,5 +1,5 @@
 /***
-Github: https://github.com/ampersand55/cddaJsonLint/
+Github: https://github.com/ampersand55/CddaTools/
 Dependencies: https://www.npmjs.com/package/node-fetch
 Usage: node cddalint.js file.json
  ***/
@@ -33,7 +33,7 @@ function fetchLinter(error, body) {
   }
 
   JSON.parse(body); // to test if json file is properly formatted;
-  
+
   originalBody = body;
 
   fetch('http://dev.narc.ro/tools/format/json_formatter.cgi', {
@@ -49,8 +49,13 @@ function fetchLinter(error, body) {
 
 function saveFile(formattedJSON) {
 
+  if (formattedJSON === originalBody) {
+    console.log(jsonFile, 'is already properly linted');
+    return;
+  }
+
   formattedJSON = formattedJSON.replace(/\n/g, '\r\n');
-  
+
   if (formattedJSON === originalBody) {
     console.log(jsonFile, 'is already properly linted');
     return;
