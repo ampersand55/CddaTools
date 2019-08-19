@@ -17,7 +17,7 @@ if (!exists(process.argv[2])) {
   process.exit(0);
 }
 
-handlePath(process.argv[2]); ;
+handlePath(process.argv[2]);
 
 function exists(path) {
   return FS.existsSync(path);
