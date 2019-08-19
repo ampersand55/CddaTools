@@ -3,6 +3,7 @@ Github: https://github.com/ampersand55/CddaTools/
 Dependencies: https://www.npmjs.com/package/node-fetch
 Usage: node cddalint.js file.json
  ***/
+
 const fs = require('fs');
 const fetch = require('node-fetch');
 
@@ -48,7 +49,6 @@ function fetchLinter(error, body) {
 }
 
 function saveFile(formattedJSON) {
-
 
   formattedJSON = formattedJSON.replace(/\r?\n/g, '\r\n');
 

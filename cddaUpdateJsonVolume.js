@@ -1,3 +1,8 @@
+/***
+Github: https://github.com/ampersand55/CddaTools/
+Usage: node cddaUpdateJsonVolume.js "c:\Cataclysm-DDA\data\json"
+ ***/
+
 const FS = require('fs');
 const PATH = require('path');
 
