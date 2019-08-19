@@ -37,15 +37,14 @@ function isJson(path) {
 }
 
 function handlePath(p) {
-  if (isJson(p)) {
+  if (isJson(p))
     handleFile(p);
-  } else if (isDir(p)) {
+  else if (isDir(p))
     handleDir(p);
-  } else if (exists(p)) {
+  else if (exists(p))
     L('path is not .json or directory:', p);
-  } else {
+  else
     L('path not found:', p);
-  }
 }
 
 function handleDir(dir) {
