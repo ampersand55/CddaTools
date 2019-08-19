@@ -29,9 +29,8 @@ let originalBody = '';
 fs.readFile(jsonFile, 'utf8', fetchLinter);
 
 function fetchLinter(error, body) {
-  if (error) {
+  if (error)
     throw error;
-  }
 
   JSON.parse(body); // to test if json file is properly formatted;
 
@@ -58,9 +57,8 @@ function saveFile(formattedJSON) {
   }
 
   fs.writeFile(jsonFile, formattedJSON, error => {
-    if (error) {
+    if (error)
       throw error;
-    }
     console.log(jsonFile, 'has been linted and saved successfully');
   });
 }
