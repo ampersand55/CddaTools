@@ -50,12 +50,16 @@ function handlePath(p) {
 
 function handleDir(dir) {
   FS.readdir(dir, (err, files) => {
+    if (err)
+      throw err;
     L('processing ' + pad(files.length) + ' files in:', dir);
     files
     .map(file => dir + PATH.sep + file)
     .forEach(p => {
-      isJson(p) && handleFile(p);
-      isDir(p) && handleDir(p);
+      if (isJson(p))
+        handleFile(p);
+      else if (isDir(p))
+        handleDir(p);
     });
   });
 }
