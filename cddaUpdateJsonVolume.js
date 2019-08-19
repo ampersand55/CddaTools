@@ -93,9 +93,10 @@ function handleFile(file) {
 
 function fixVolume(fullMatch, whiteSpace, key, volume, EOL, offset, fullText) {
 
-  if (fullText.includes('musical_instrument') && whiteSpace.length === 6) { // ugly and not robust, but works for now
+  if (fullText.includes('musical_instrument') && whiteSpace.length === 6) // ugly and not robust, but works for now
     return fullMatch;
-  }
+  if (volume === '0')
+    return fullMatch;
 
   const liters = Number(volume) / 4;
   let volumeStr = '';
