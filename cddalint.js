@@ -49,10 +49,6 @@ function fetchLinter(error, body) {
 
 function saveFile(formattedJSON) {
 
-  if (formattedJSON === originalBody) {
-    console.log(jsonFile, 'is already properly linted');
-    return;
-  }
 
   formattedJSON = formattedJSON.replace(/\r?\n/g, '\r\n');
 
