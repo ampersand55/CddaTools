@@ -17,7 +17,7 @@ if (!exists(process.argv[2])) {
   process.exit(0);
 }
 
-handlePath(process.argv[2]);;
+handlePath(process.argv[2]); ;
 
 function exists(path) {
   return FS.existsSync(path);
@@ -68,11 +68,11 @@ function handleFile(file) {
 
     const newData = data.replace(matchVolume, fixVolume);
     if (newData !== data) {
-      // FS.writeFile(file, newData, 'utf-8', function (err) {
-      // if (err)
-      // throw err;
-      L('updating ' + pad(matches.length) + ' match(es) in:', file);
-      // });
+      FS.writeFile(file, newData, 'utf-8', function (err) {
+        if (err)
+          throw err;
+        L('updating ' + pad(matches.length) + ' match(es) in:', file);
+      });
     } else {
       L('this should not happen', file);
     }
@@ -93,4 +93,3 @@ function fixVolume(fullMatch, whiteSpace, key, volume, EOL, offset, fullText) {
   }
   return whiteSpace + key + volumeStr + EOL;
 }
-
