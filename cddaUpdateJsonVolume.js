@@ -79,7 +79,7 @@ function handleFile(file) {
         L('updating ' + pad(matches.length) + ' match(es) in:', file);
       });
     } else {
-      L('this should not happen', file);
+      L('"Volume" instance skipped in:', file); // musical_instrument
     }
   });
 }
