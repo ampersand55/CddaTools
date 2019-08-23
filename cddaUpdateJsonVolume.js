@@ -9,7 +9,7 @@ const PATH = require('path');
 const pad = (str, n = 3) => String(str).padStart(n);
 const L = (str, ...args) => console.info(pad(str, 30), ...args);
 
-const matchVolume = /( *)("(?:min_|max_)?volume": )(\d+)(,\r?\n)/g;
+const matchVolume = /( *)("(?:min_|max_|min_pet_|min_pet_|integral_)?(?:volume|storage)": )(\d+)(,\r?\n)/g;
 
 if (process.argv.length !== 3) {
   L('must have exactly one argument');
@@ -98,12 +98,16 @@ function fixVolume(fullMatch, whiteSpace, key, volume, EOL, offset, fullText) {
   if (volume === '0')
     return fullMatch;
 
-  const liters = Number(volume) / 4;
-  let volumeStr = '';
-  if (Number.isInteger(liters))
-    volumeStr = '"' + liters + ' L"';
-  else
-    volumeStr = '"' + liters * 1000 + ' ml"';
+  if (typeof volume === 'string') {}
+  else {
 
-  return whiteSpace + key + volumeStr + EOL;
+    const liters = Number(volume) / 4;
+    let volumeStr = '';
+    if (Number.isInteger(liters))
+      volumeStr = '"' + liters + ' L"';
+    else
+      volumeStr = '"' + liters * 1000 + ' ml"';
+
+    return whiteSpace + key + volumeStr + EOL;
+  }
 }
