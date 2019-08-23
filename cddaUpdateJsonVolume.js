@@ -99,7 +99,7 @@ function fixVolume(fullMatch, whiteSpace, key, volume, EOL, offset, fullText) {
     return fullMatch;
 
   if (typeof volume === 'string') {}
-  else {
+  else if (typeof volume === 'number') {
 
     const liters = Number(volume) / 4;
     let volumeStr = '';
